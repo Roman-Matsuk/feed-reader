@@ -1,6 +1,6 @@
 # Feed reader
 
-Github Pages: [LINK]()
+Github Pages: [LINK](https://roman-matsuk.github.io/feed-reader/)
 
 To run project locally:
 1. Clone project.
