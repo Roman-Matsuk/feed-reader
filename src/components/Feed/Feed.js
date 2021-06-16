@@ -11,8 +11,6 @@ export const Feed = ({ history, location, match, feeds }) => {
     setCurrentFeed(current);
   }, [match, feeds])
 
-  // console.log('currentFeed', currentFeed);
-
   return (
     <ul className="feed">
       {currentFeed && (

@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import './Article.scss';
 
 export const Article = ({ history, location, match, feeds }) => {
 
-  console.log(history.location.state);
   return (
     <div className="article">
       <h3 className="article__title">{history.location.state.title}</h3>

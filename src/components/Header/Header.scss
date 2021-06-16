@@ -1,5 +1,7 @@
 .header {
   padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
 
   &--parameters {
     background-color: #db007f;

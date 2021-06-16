@@ -41,6 +41,11 @@ img {
     width: 200px;
   }
 
+  &--secondary {
+    background-color: #fff;
+    color: #db007f;
+  }
+
   &:hover {
     background-color: #820049;
   }
