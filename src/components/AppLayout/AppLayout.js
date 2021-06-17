@@ -5,60 +5,78 @@ import { Route, Switch } from 'react-router-dom';
 import { feedLinks } from '../../api/feed-links';
 import { Article } from '../Article';
 import { Container } from '../Container';
-import { Feed } from '../Feed/Feed';
-import { FeedPage } from '../FeedPage';
+import { Feed } from '../Feed';
+import { ItemsPage } from '../ItemsPage';
 import { Header } from '../Header';
 
 import { getPosts } from '../../api/posts';
+import { AddNewItem } from '../AddNewItem/AddNewItem';
 
 export const AppLayout = ({ setIsAuthenticated }) => {
-  const [feeds, setFeeds] = useState([]);
+  const [items, setItems] = useState([]);
   const [links, setLinks] = useState(feedLinks);
+  const [selectedItems, setSelectedItems] = useState('feeds');
+  const [isAddNew, setIsAddNew] = useState(false);
 
   useEffect(() => {
-    const parser = new Parser();
-
-    const fetchPosts = async () => {
-      const CORS_PROXY = "https://corsanywhere.herokuapp.com/";
-
-      for (let i = 0; i < links.length; i++) {
-        const url = CORS_PROXY + feedLinks[i];
-        const feed = await parser.parseURL(url)
+    if (selectedItems === 'feeds') {
+      const parser = new Parser();
+      const feeds = [];
   
-        setFeeds(prevState => [...prevState, feed]);
+      const fetchPosts = async () => {
+        const CORS_PROXY = "https://corsanywhere.herokuapp.com/";
+  
+        for (let i = 0; i < links.length; i++) {
+          console.log();
+          const url = CORS_PROXY + links[i];
+          const feed = await parser.parseURL(url)
+          
+          feeds.push(feed);
+        }
+        
+        setItems(feeds);
       }
-
-      getPosts('1').then(res => setFeeds(prevState => [...prevState, ...res]));
+      fetchPosts();
+    } else {
+      getPosts('1').then(res => setItems([...res]));
     }
-    fetchPosts();
-  }, [links]);
 
+  }, [links, selectedItems]);
+  console.log(links);
   return (
     <>
-      <Header setIsAuthenticated={setIsAuthenticated} setLinks={setLinks} />
+      <Header
+        setIsAuthenticated={setIsAuthenticated}
+        setSelectedItems={setSelectedItems}
+        setIsAddNew={setIsAddNew}
+      />
       <Container>
         <Switch>
-        <Route
-          exact
-          path='/'
-          render={(routerProps) =>
-            <FeedPage feeds={feeds} setFeeds={setFeeds} {...routerProps} />
-          }
-        />
-        <Route
-          exact
-          path='/:title'
-          render={(routerProps) =>
-            <Feed {...routerProps} feeds={feeds} />
-          }
-        />
-        <Route
-          exact
-          path='/:title/:article'
-          render={(routerProps) =>
-            <Article {...routerProps} feeds={feeds} />
-          }
-        />
+          <Route
+            exact
+            path='/'
+            render={(routerProps) => {
+              if (isAddNew) {
+               return <AddNewItem selectedItems={selectedItems} setLinks={setLinks} setItems={setItems} />
+              }
+
+              return <ItemsPage items={items} setItems={setItems} {...routerProps} />
+            }}
+          />
+          <Route
+            exact
+            path='/:title'
+            render={(routerProps) =>
+              <Feed {...routerProps} items={items} />
+            }
+          />
+          <Route
+            exact
+            path='/:title/:article'
+            render={(routerProps) =>
+              <Article {...routerProps} items={items} />
+            }
+          />
         </Switch>
       </Container>
     </>

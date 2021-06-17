@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 
 import './Feed.scss';
 
-export const Feed = ({ history, location, match, feeds }) => {
+export const Feed = ({ history, location, match, items }) => {
   const [currentFeed, setCurrentFeed] = useState(null);
 
   useEffect(() => {
-    const current = feeds.find(feed => match.url.includes(feed.title));
+    const current = items.find(feed => match.url.includes(feed.title));
 
     setCurrentFeed(current);
-  }, [match, feeds])
+  }, [match, items])
 
   return (
     <ul className="feed">

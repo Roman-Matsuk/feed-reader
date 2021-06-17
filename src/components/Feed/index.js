@@ -1,1 +1,1 @@
-export * from './AnnouncementDetails';
+export * from './Feed';

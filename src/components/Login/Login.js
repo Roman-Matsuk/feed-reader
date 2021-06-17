@@ -45,6 +45,7 @@ export const Login = ({ setIsAuthenticated }) => {
         onClick={() => {
           history.push('/');
           setIsAuthenticated(true);
+          window.localStorage.setItem('isAuthenticated', true);
         }}
       >
         Log in

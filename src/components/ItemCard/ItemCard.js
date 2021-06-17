@@ -2,22 +2,23 @@ import React from 'react';
 import { useHistory } from "react-router-dom";
 import { deletePost } from '../../api/posts';
 
-import './FeedCard.scss';
+import './ItemCard.scss';
 
-export const FeedCard = ({ feed, setFeeds }) => {
+export const ItemCard = ({ item, setItems }) => {
   let history = useHistory();
 
+  console.log(item);
   return (
     <div className="feed-card">
       <div className="feed-card__body">
         <h3 className="feed-card__title">
-           {feed.title}
+           {item.title}
         </h3>
-        {feed.items &&
+        {item.items &&
           <button
             className="feed-card__button button"
             onClick={() => {
-              history.push(`/${feed.title}`)
+              history.push(`/${item.title}`)
             }}
           >
             See more
@@ -26,12 +27,12 @@ export const FeedCard = ({ feed, setFeeds }) => {
         <button
           className="feed-card__button button"
           onClick={() => {
-            setFeeds(prevState => {
-              return prevState.filter(item => item.title !== feed.title)
+            setItems(prevState => {
+              return prevState.filter(prevItem => prevItem.title !== item.title)
             });
 
-            if (feed.userId) {
-              deletePost(feed.userId);
+            if (item.userId) {
+              deletePost(item.userId);
             }
           }}
         >
