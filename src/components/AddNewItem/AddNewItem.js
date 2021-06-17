@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { addPost } from '../../api/posts';
 
+import './AddNewItem.scss';
+
 export const AddNewItem = ({ selectedItems, setLinks, setItems }) => {
   const [link, setLink] = useState('');
   const [title, setTitle] = useState('');
@@ -11,10 +13,11 @@ export const AddNewItem = ({ selectedItems, setLinks, setItems }) => {
       case 'feeds':
         return (
           <>
-            <label htmlFor="feed">
+            <label className="add-form__label" htmlFor="feed">
               Feed link
             </label>
             <input
+              className="add-form__input input"
               id='feed'
               type='text'
               value={link}
@@ -26,19 +29,21 @@ export const AddNewItem = ({ selectedItems, setLinks, setItems }) => {
       case 'posts':
         return (
           <>
-            <label htmlFor="title">
+            <label className="add-form__label" htmlFor="title">
               Title
             </label>
             <input
+              className="add-form__input input"
               id="title"
               type='text'
               value={title}
               onChange={event => setTitle(event.target.value)}
             />
-            <label htmlFor="title">
+            <label className="add-form__label" htmlFor="title">
               Body
             </label>
             <input
+              className="add-form__input input"
               id="body"
               type='text'
               value={body}
@@ -70,10 +75,13 @@ export const AddNewItem = ({ selectedItems, setLinks, setItems }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      className="add-form"
+      onSubmit={handleSubmit}
+    >
       {render()}
       <button
-        className="button"
+        className="add-form__submit button"
         type="submit"
       >
         Submit

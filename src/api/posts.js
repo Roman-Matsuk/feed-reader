@@ -13,10 +13,25 @@ export function deletePost (userId) {
 export function addPost (userId, title, body) {
   return fetch(BASE_URL, {
     method: 'POST',
-    body: {
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+    body: JSON.stringify({
       userId,
       title,
       body
-    }
+    })
+  }).then(res => console.log(res));
+};
+
+export function editPost (userId, title) {
+  return fetch(BASE_URL + `/${userId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+    body: JSON.stringify({
+      title
+    })
   }).then(res => console.log(res));
 };

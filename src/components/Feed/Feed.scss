@@ -1,15 +1,17 @@
+@import '../../variables.scss';
+
 .feed {
   list-style: none;
 
   &__item {
-    border: 1px solid black;
+    border: 1px solid $border;
     margin-bottom: 10px;
     font-size: 16px;
     padding: 20px;
     cursor: pointer;
 
     &:hover {
-      box-shadow: 0px 1px 5px #db007f;
+      box-shadow: 0px 1px 5px $main-color;
     }
   }
 

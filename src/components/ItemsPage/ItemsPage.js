@@ -5,7 +5,7 @@ import './ItemsPage.scss';
 
 export const ItemsPage = ({ items, setItems }) => {
   return (
-    <div className={`feed-page`}>
+    <div className="item-page">
       {items.map(item => (
         <ItemCard
           key={item.title}

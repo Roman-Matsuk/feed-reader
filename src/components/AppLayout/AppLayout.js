@@ -10,7 +10,7 @@ import { ItemsPage } from '../ItemsPage';
 import { Header } from '../Header';
 
 import { getPosts } from '../../api/posts';
-import { AddNewItem } from '../AddNewItem/AddNewItem';
+import { AddNewItem } from '../AddNewItem';
 
 export const AppLayout = ({ setIsAuthenticated }) => {
   const [items, setItems] = useState([]);
@@ -27,7 +27,6 @@ export const AppLayout = ({ setIsAuthenticated }) => {
         const CORS_PROXY = "https://corsanywhere.herokuapp.com/";
   
         for (let i = 0; i < links.length; i++) {
-          console.log();
           const url = CORS_PROXY + links[i];
           const feed = await parser.parseURL(url)
           
@@ -42,7 +41,7 @@ export const AppLayout = ({ setIsAuthenticated }) => {
     }
 
   }, [links, selectedItems]);
-  console.log(links);
+
   return (
     <>
       <Header

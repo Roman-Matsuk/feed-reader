@@ -1,14 +1,22 @@
+@import '../../variables.scss';
+
 .header {
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
 
   &--parameters {
-    background-color: #db007f;
-    box-shadow: 0px 1px 5px #000;
+    background-color: $main-color;
+    box-shadow: 0px 1px 5px $header-shadow;
   }
 
   &__title {
-    color: #fff;
+    color: $secondary-color;
+  }
+
+  &__options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
   }
 }

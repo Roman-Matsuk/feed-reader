@@ -3,16 +3,21 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 500px;
+
+  &--parameters {
+    height: 700px;
+  }
 
   &__label {
     font-size: 20px;
     margin-bottom: 10px;
+    font-weight: bold;
+    width: 200px;
   }
 
   &__input {
     margin-bottom: 10px;
     height: 20px;
-    
+    width: 200px;
   }
 }

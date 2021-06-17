@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.scss';
 
 import { Login } from './components/Login';
-import { AppLayout } from './components/AppLayout/AppLayout';
+import { AppLayout } from './components/AppLayout';
 
 
 function App() {
@@ -14,10 +14,9 @@ function App() {
     setIsAuthenticated(auth)
   }, [auth]);
 
-  console.log(typeof isAuthenticated);
   return (
     <div className="app">
-      {auth === 'true'
+      {isAuthenticated === 'true'
         ? <AppLayout setIsAuthenticated={setIsAuthenticated} />
         : <Login setIsAuthenticated={setIsAuthenticated} />
       }

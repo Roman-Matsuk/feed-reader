@@ -17,11 +17,12 @@ export const Login = ({ setIsAuthenticated }) => {
   }, [])
 
   return (
-    <div className="login">
+    <div className="login login--parameters">
       <label className="login__label" htmlFor="email">
         Email
       </label>
-      <input className="login__input"
+      <input
+        className="login__input input"
         id="email"
         type="email"
         value={user.email}
@@ -32,7 +33,7 @@ export const Login = ({ setIsAuthenticated }) => {
       <label className="login__label" htmlFor="password">
         Password
       </label>
-      <input className="login__input"
+      <input className="login__input input"
         id="password"
         type="password"
         value={user.phone}

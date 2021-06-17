@@ -9,13 +9,14 @@ export const Header = ({ setIsAuthenticated, setSelectedItems, setIsAddNew }) =>
   return (
     <header className="header header--parameters">
       <h1 className="header__title">Feeds</h1>
-      <span>
+      <div className="header__options">
         <button
             className="header__button button button--secondary"
             type='button'
             onClick={() => {
               setSelectedItems('feeds');
               setIsAddNew(false);
+              history.push('/');
             }}
           >
             Feeds
@@ -26,6 +27,7 @@ export const Header = ({ setIsAuthenticated, setSelectedItems, setIsAddNew }) =>
             onClick={() => {
               setSelectedItems('posts');
               setIsAddNew(false);
+              history.push('/');
             }}
           >
             Posts
@@ -35,11 +37,12 @@ export const Header = ({ setIsAuthenticated, setSelectedItems, setIsAddNew }) =>
             type='button'
             onClick={() => {
               setIsAddNew(true);
+              history.push('/');
             }}
           >
             Add New
         </button>
-      </span>
+      </div>
       <button
           className="header__button button button--secondary"
           type='button'
